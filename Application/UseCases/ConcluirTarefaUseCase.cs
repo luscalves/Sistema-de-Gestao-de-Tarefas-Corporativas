@@ -1,5 +1,6 @@
 using System;
 using SistemaTarefasCorporativas.Entities;
+using SistemaDeGestaoDeTarefas.Application.DTOs;
 
 namespace SistemaDeGestaoDeTarefas.UseCases
 {
@@ -12,7 +13,7 @@ namespace SistemaDeGestaoDeTarefas.UseCases
             _tarefaRepository = tarefaRepository;
         }
         
-        public Tarefa Executar(int tarefaId){
+        public TarefaResponseDTO Executar(int tarefaId){
             Tarefa? tarefa = _tarefaRepository.BuscarPorId(tarefaId);
   
             if(tarefa == null){
@@ -22,8 +23,18 @@ namespace SistemaDeGestaoDeTarefas.UseCases
             tarefa.Concluir();
             
             _tarefaRepository.Atualizar(tarefa);
-
-            return tarefa;
+            
+         var response = new TarefaResponseDTO{
+            Id = tarefa.Id,
+            Titulo = tarefa.Titulo,
+            Descricao = tarefa.Descricao,
+            Status = tarefa.Status.ToString(),
+            DataCriacao = tarefa.DataCriacao,
+            UsuarioAtribuidoId = tarefa.UsuarioAtribuidoId,
+            MotivoBloqueio = tarefa.MotivoBloqueio
+         }; 
+         
+         return response;
         }
     }
 }
