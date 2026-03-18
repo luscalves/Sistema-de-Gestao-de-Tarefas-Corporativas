@@ -16,16 +16,16 @@ O projeto está sendo construído do zero com forte ênfase em design de softwar
 
 A solução está dividida nas seguintes camadas lógicas:
 
-\`\`\`text
+```text
 📁 SistemaDeGestaoDeTarefas
 ├── 📁 Domain
-│   ├── 📁 Entities (Núcleo do sistema, regras de negócio isoladas)
-│   └── 📁 Repositories (Contratos/Interfaces de persistência)
+│   ├── 📁 Entities
+│   └── 📁 Repositories
 ├── 📁 Application
-│   ├── 📁 UseCases (Orquestração de fluxos, ex: ConcluirTarefaUseCase)
-│   └── 📁 DTOs (Formatos de entrada e saída de dados)
+│   ├── 📁 UseCases
+│   └── 📁 DTOs
 └── 📁 Infrastructure
-    └── (Em desenvolvimento: Implementação do EF Core e PostgreSQL)
+    └── (Em desenvolvimento)
 \`\`\`
 
 ## 🛠️ Tecnologias e Ferramentas
