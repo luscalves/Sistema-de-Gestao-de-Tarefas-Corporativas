@@ -26,7 +26,7 @@ A solução está dividida nas seguintes camadas lógicas:
 │   └── 📁 DTOs
 └── 📁 Infrastructure
     └── (Em desenvolvimento)
-\`\`\`
+```
 
 ## 🛠️ Tecnologias e Ferramentas
 
