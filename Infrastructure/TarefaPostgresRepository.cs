@@ -1,7 +1,8 @@
 using SistemaDeGestaoDeTarefas;
-using SistemaTarefasCorporativas.Entities;
+using SistemaDeGestaoDeTarefas.Entities;
 
-namespace SistemaTarefasCorporativas.Infrastructure
+
+namespace SistemaDeGestaoDeTarefas.Infrastructure
 {
     public class TarefaPostgresRepository : ITarefaRepository
     {
@@ -13,22 +14,29 @@ namespace SistemaTarefasCorporativas.Infrastructure
         }
         public void Adicionar(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            _context.Tarefas.Add(tarefa);
+            _context.SaveChanges();
         }
 
         public Tarefa? BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Tarefas.FirstOrDefault(t => t.Id == id);
         }
 
         public void Atualizar(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            _context.Tarefas.Update(tarefa);
+            _context.SaveChanges();
         }
 
         public void Remover(int id)
         {
-            throw new NotImplementedException();
+            var tarefa = _context.Tarefas.FirstOrDefault(t => t.Id == id);
+            if (tarefa != null)
+            {
+                _context.Tarefas.Remove(tarefa);
+                _context.SaveChanges();
+            }
         }
     }
 }

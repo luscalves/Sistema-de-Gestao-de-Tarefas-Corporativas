@@ -1,4 +1,4 @@
-namespace SistemaTarefasCorporativas.Entities
+namespace SistemaDeGestaoDeTarefas.Entities
 {
     public class Tarefa
     {

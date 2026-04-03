@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Sistema-de-Gestao-de-Tarefas-Corporativas")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+612b1d6e4784a487b3135668faaa13f99800926f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+64d066566cc7d3c7642433abd43252b21c44aac6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Sistema-de-Gestao-de-Tarefas-Corporativas")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Sistema-de-Gestao-de-Tarefas-Corporativas")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

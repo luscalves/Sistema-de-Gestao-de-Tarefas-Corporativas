@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using SistemaTarefasCorporativas.Entities;
+using SistemaDeGestaoDeTarefas.Entities;
 
 namespace SistemaDeGestaoDeTarefas
 {
