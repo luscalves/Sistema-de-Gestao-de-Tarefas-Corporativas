@@ -8,7 +8,7 @@ namespace SistemaDeGestaoDeTarefas.Entities
         public string Descricao{get; private set;}
         public StatusTarefa Status{get; private set;}
         public DateTime DataCriacao{get; private set;}
-        public string MotivoBloqueio{get; private set;}
+        public string? MotivoBloqueio{get; private set;}
 
         public enum StatusTarefa
         {

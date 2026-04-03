@@ -13,6 +13,7 @@ namespace SistemaDeGestaoDeTarefas
        void Atualizar(Tarefa tarefa);
 
        void Remover(int id);
+       IEnumerable<Tarefa> ObterTodas();
         
     }
 }

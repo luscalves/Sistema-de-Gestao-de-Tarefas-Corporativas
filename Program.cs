@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using SistemaDeGestaoDeTarefas;
+using SistemaDeGestaoDeTarefas.Application.UseCases;
 using SistemaDeGestaoDeTarefas.Infrastructure;
 using SistemaDeGestaoDeTarefas.UseCases;
 
@@ -18,6 +19,10 @@ builder.Services.AddScoped<ITarefaRepository, TarefaPostgresRepository>();
 
 // Registramos também nosso Maestro para que o Controller possa chamá-lo
 builder.Services.AddScoped<ConcluirTarefaUseCase>();
+
+builder.Services.AddScoped<CriarTarefaUseCase>();
+
+builder.Services.AddScoped<ListarTarefasUseCase>();
 
 var app = builder.Build();
 

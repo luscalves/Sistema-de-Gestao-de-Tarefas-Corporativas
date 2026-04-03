@@ -38,6 +38,12 @@ namespace SistemaDeGestaoDeTarefas.Infrastructure
                 _context.SaveChanges();
             }
         }
+        
+        public IEnumerable<Tarefa> ObterTodas()
+        {
+            // O Entity Framework vai no banco, faz um SELECT * FROM Tarefas e transforma em uma lista
+            return _context.Tarefas.ToList();
+        }
     }
 }
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Hqak5eZRKoI=",
+  "dgSpecHash": "2lW2LgfCAko=",
   "success": true,
-  "projectFilePath": "/home/lucalves/RiderProjects/Sistema-de-Gestao-de-Tarefas-Corporativas/Sistema-de-Gestao-de-Tarefas-Corporativas.csproj",
+  "projectFilePath": "/home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/SistemaDeGestaoDeTarefas.csproj",
   "expectedPackageFiles": [
     "/home/lucalves/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/lucalves/.nuget/packages/microsoft.build.framework/18.0.2/microsoft.build.framework.18.0.2.nupkg.sha512",

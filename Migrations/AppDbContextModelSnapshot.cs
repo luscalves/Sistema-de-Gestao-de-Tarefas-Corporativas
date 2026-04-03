@@ -38,7 +38,6 @@ namespace Sistema_de_Gestao_de_Tarefas_Corporativas.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("MotivoBloqueio")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Status")
