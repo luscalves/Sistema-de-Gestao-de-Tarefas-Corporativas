@@ -51,4 +51,42 @@ public class TarefaController : ControllerBase
             return BadRequest(new { erro = ex.Message });
         }
     }
+    // Adicione as rotas abaixo das que você já tem (Criar, ListarTodas, Concluir)
+
+    [HttpGet("{id}")]
+    public IActionResult ObterPorId(int id, [FromServices] ObterTarefaPorIdUseCase useCase)
+    {
+        var tarefa = useCase.Executar(id);
+        if (tarefa == null) return NotFound(new { mensagem = "Tarefa não encontrada" });
+    
+        return Ok(tarefa);
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult Atualizar(int id, [FromBody] AtualizarTarefaRequestDTO request, [FromServices] AtualizarTarefaUseCase useCase)
+    {
+        try
+        {
+            useCase.Executar(id, request.Titulo, request.Descricao);
+            return NoContent(); // 204 No Content é o padrão para atualizações bem-sucedidas
+        }
+        catch (Exception ex)
+        {
+            return NotFound(new { erro = ex.Message });
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult Excluir(int id, [FromServices] ExcluirTarefaUseCase useCase)
+    {
+        try
+        {
+            useCase.Executar(id);
+            return NoContent(); // 204 No Content para deleções bem-sucedidas
+        }
+        catch (Exception ex)
+        {
+            return NotFound(new { erro = ex.Message });
+        }
+    }
 }

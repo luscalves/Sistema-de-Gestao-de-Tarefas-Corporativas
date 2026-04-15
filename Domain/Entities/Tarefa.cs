@@ -51,6 +51,14 @@ namespace SistemaDeGestaoDeTarefas.Entities
                 this.Status = StatusTarefa.EmAndamento;
             }
         }
+        public void AtualizarDetalhes(string novoTitulo, string novaDescricao)
+        {
+            // Aqui você poderia até colocar validações futuras, ex:
+            // if (string.IsNullOrWhiteSpace(novoTitulo)) throw new Exception(...);
+
+            Titulo = novoTitulo;
+            Descricao = novaDescricao;
+        }
 
     }
 }

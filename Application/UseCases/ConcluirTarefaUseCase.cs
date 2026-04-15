@@ -14,7 +14,7 @@ namespace SistemaDeGestaoDeTarefas.UseCases
         }
         
         public TarefaResponseDTO Executar(int tarefaId){
-            Tarefa? tarefa = _tarefaRepository.BuscarPorId(tarefaId);
+            Tarefa? tarefa = _tarefaRepository.ObterPorId(tarefaId);
   
             if(tarefa == null){
                 throw new Exception($"Tarefa com ID {tarefaId} não foi encontrada.");

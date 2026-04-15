@@ -18,7 +18,7 @@ namespace SistemaDeGestaoDeTarefas.Infrastructure
             _context.SaveChanges();
         }
 
-        public Tarefa? BuscarPorId(int id)
+        public Tarefa? ObterPorId(int id)
         {
             return _context.Tarefas.FirstOrDefault(t => t.Id == id);
         }
@@ -29,14 +29,13 @@ namespace SistemaDeGestaoDeTarefas.Infrastructure
             _context.SaveChanges();
         }
 
-        public void Remover(int id)
+        public void Remover(Tarefa tarefa)
         {
-            var tarefa = _context.Tarefas.FirstOrDefault(t => t.Id == id);
-            if (tarefa != null)
-            {
-                _context.Tarefas.Remove(tarefa);
-                _context.SaveChanges();
-            }
+            // O Entity Framework apenas marca a entidade para exclusão
+            _context.Tarefas.Remove(tarefa);
+    
+            // O SaveChanges vai no banco e executa o DELETE de fato
+            _context.SaveChanges();
         }
         
         public IEnumerable<Tarefa> ObterTodas()

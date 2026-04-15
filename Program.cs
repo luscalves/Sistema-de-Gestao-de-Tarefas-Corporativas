@@ -24,6 +24,12 @@ builder.Services.AddScoped<CriarTarefaUseCase>();
 
 builder.Services.AddScoped<ListarTarefasUseCase>();
 
+builder.Services.AddScoped<AtualizarTarefaUseCase>();
+
+builder.Services.AddScoped<ExcluirTarefaUseCase>();
+
+builder.Services.AddScoped<ObterTarefaPorIdUseCase>();
+
 var app = builder.Build();
 
 // 4. Mapeia as rotas de internet para os nossos futuros Controllers

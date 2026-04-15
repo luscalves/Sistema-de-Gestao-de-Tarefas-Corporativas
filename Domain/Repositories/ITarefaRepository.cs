@@ -8,12 +8,11 @@ namespace SistemaDeGestaoDeTarefas
     {
        void Adicionar(Tarefa tarefa);
        
-       Tarefa? BuscarPorId(int id);
-
+       Tarefa? ObterPorId(int id);
        void Atualizar(Tarefa tarefa);
-
-       void Remover(int id);
+       void Remover(Tarefa tarefa);
        IEnumerable<Tarefa> ObterTodas();
+       
         
     }
 }
