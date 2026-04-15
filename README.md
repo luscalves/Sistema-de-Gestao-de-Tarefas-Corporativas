@@ -14,7 +14,7 @@ O projeto está sendo construído do zero com forte ênfase em design de softwar
 
 ## 📂 Estrutura do Projeto
 
-A solução está dividida nas seguintes camadas lógicas:
+A solução está dividida nas seguintes camadas lógicas principais:
 
 ```text
 📁 SistemaDeGestaoDeTarefas
@@ -24,19 +24,34 @@ A solução está dividida nas seguintes camadas lógicas:
 ├── 📁 Application
 │   ├── 📁 UseCases
 │   └── 📁 DTOs
-└── 📁 Infrastructure
-    └── (Em desenvolvimento)
+├── 📁 Infrastructure
+│   ├── 📁 Migrations
+│   ├── AppDbContext.cs
+│   └── TarefaPostgresRepository.cs
+└── 📁 Controllers
+    └── TarefaController.cs
 ```
+
+## ⚙️ Funcionalidades Implementadas (API REST)
+
+A aplicação já possui um ciclo completo de gestão de estado das entidades no banco de dados:
+
+* `POST /api/tarefa`: Criação de novas tarefas.
+* `GET /api/tarefa`: Listagem de todas as tarefas cadastradas.
+* `GET /api/tarefa/{id}`: Busca detalhada de uma tarefa específica.
+* `PUT /api/tarefa/{id}`: Atualização de informações da tarefa (Título/Descrição).
+* `PUT /api/tarefa/{id}/concluir`: Rota dedicada para transição de estado e aplicação de regras de negócio de conclusão.
+* `DELETE /api/tarefa/{id}`: Remoção de tarefas do sistema.
 
 ## 🛠️ Tecnologias e Ferramentas
 
 * **Linguagem:** C#
-* **Framework:** .NET 8/10 (Em desenvolvimento)
-* **Banco de Dados:** PostgreSQL (Planejado)
-* **ORM:** Entity Framework Core (Planejado)
+* **Framework:** .NET 10
+* **Banco de Dados:** PostgreSQL
+* **ORM:** Entity Framework Core (Code-First Migrations)
 
 ## 👤 Autor
 
 **Lucas Alves de Souza**
 * GitHub: [luscalves](https://github.com/luscalves)
-* *Estudante de Engenharia de Computação em transição para desafios de nível Sênior no ecossistema .NET.*
+* *Estudante de Engenharia de Computação em transição para desafios no ecossistema .NET.*
