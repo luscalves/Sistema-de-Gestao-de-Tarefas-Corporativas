@@ -1,3 +1,5 @@
+using SistemaDeGestaoDeTarefas.Domain.Entities;
+
 namespace SistemaDeGestaoDeTarefas.Application.DTOs
 {
     public class TarefaResponseDTO

@@ -1,5 +1,5 @@
 using System;
-using SistemaDeGestaoDeTarefas.Entities;
+using SistemaDeGestaoDeTarefas.Domain.Entities;
 using SistemaDeGestaoDeTarefas.Application.DTOs;
 
 namespace SistemaDeGestaoDeTarefas.UseCases

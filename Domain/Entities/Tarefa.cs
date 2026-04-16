@@ -1,9 +1,11 @@
-namespace SistemaDeGestaoDeTarefas.Entities
+namespace SistemaDeGestaoDeTarefas.Domain.Entities
 {
     public class Tarefa
     {
         public int Id{get; private set;}
         public int? UsuarioAtribuidoId{get; private set;}
+        
+        public Usuario? UsuarioAtribuido { get; private set; }
         public string Titulo{get; private set;}
         public string Descricao{get; private set;}
         public StatusTarefa Status{get; private set;}
@@ -43,11 +45,12 @@ namespace SistemaDeGestaoDeTarefas.Entities
             }
         }
 
-        public void AtribuirUsuario(int usuarioId){
+        public void AtribuirUsuario(Usuario usuario){
             if(this.UsuarioAtribuidoId != null){
                 throw new Exception("Ação inválida: tarefa já atribuida para um usuário");
             } else{
-                this.UsuarioAtribuidoId = usuarioId;
+                this.UsuarioAtribuidoId = usuario.Id;
+                this.UsuarioAtribuido = usuario;
                 this.Status = StatusTarefa.EmAndamento;
             }
         }

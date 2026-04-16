@@ -1,6 +1,8 @@
+using SistemaDeGestaoDeTarefas.Domain.Entities;
+
 namespace SistemaDeGestaoDeTarefas;
 
-public class IUsuarioRepository
+public interface IUsuarioRepository
 {
-    
+    Usuario ObterPorId(int id);
 }

@@ -1,5 +1,6 @@
 using SistemaDeGestaoDeTarefas;
-using SistemaDeGestaoDeTarefas.Entities;
+using SistemaDeGestaoDeTarefas.Domain.Entities;
+
 
 
 namespace SistemaDeGestaoDeTarefas.Infrastructure
