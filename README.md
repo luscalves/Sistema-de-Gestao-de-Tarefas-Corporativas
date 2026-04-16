@@ -56,4 +56,3 @@ A aplicação já possui um ciclo completo de gestão de estado das entidades no
 * GitHub: [luscalves](https://github.com/luscalves)
 * *Estudante de Engenharia de Computação em transição para desafios no ecossistema .NET.*
 
-testando se vai pedir senha
