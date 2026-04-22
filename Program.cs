@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirFrontEnd", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // O endereço do seu Vite/React
+        policy.WithOrigins("http://localhost:5174") // O endereço do seu Vite/React
             .AllowAnyHeader()                     // Permite enviar qualquer dado (como JSON)
             .AllowAnyMethod();                    // Permite POST, GET, PUT, DELETE
     });
@@ -25,25 +25,39 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<AppDbContext>();
 
 // 3. A Mágica da Injeção de Dependência
+// Repositórios agrupados
 builder.Services.AddScoped<ITarefaRepository, TarefaPostgresRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioPostgresRepository>();
 
+// UseCases de Tarefa
 builder.Services.AddScoped<ConcluirTarefaUseCase>();
 builder.Services.AddScoped<CriarTarefaUseCase>();
 builder.Services.AddScoped<ListarTarefasUseCase>();
 builder.Services.AddScoped<AtualizarTarefaUseCase>();
 builder.Services.AddScoped<ExcluirTarefaUseCase>();
 builder.Services.AddScoped<ObterTarefaPorIdUseCase>();
-builder.Services.AddScoped<IUsuarioRepository, UsuarioPostgresRepository>();
+builder.Services.AddScoped<DeletarTarefaUseCase>();
+
+// UseCases de Usuário / Atribuição
 builder.Services.AddScoped<AtribuirUsuarioUseCase>();
+builder.Services.AddScoped<ListarUsuariosUseCase>();
+builder.Services.AddScoped<CriarUsuarioUseCase>();
 
 var app = builder.Build();
 
-// 👇 ATIVAÇÃO DO CORS ADICIONADA AQUI 👇
-// AVISO IMPORTANTE: O UseCors TEM que ficar antes do MapControllers!
+// 👇 ATIVAÇÃO DA LINHA DE MONTAGEM (PIPELINE) 👇
+
+// 1º O Routing (Avisa o .NET que vamos usar rotas na API)
+app.UseRouting();
+
+// 2º O CORS (A barreira de segurança - Tem que ficar EXATAMENTE AQUI!)
 app.UseCors("PermitirFrontEnd");
 
-// 4. Mapeia as rotas de internet para os nossos futuros Controllers
+// 3º Autorização (Boa prática manter na ordem, caso você adicione login no futuro)
+app.UseAuthorization();
+
+// 4º Mapeia as rotas para os Controllers
 app.MapControllers();
 
-// 5. Liga o servidor!
+// 5º Liga o servidor!
 app.Run();

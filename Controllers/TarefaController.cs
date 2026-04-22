@@ -11,9 +11,8 @@ public class TarefaController : ControllerBase
 {
     private readonly ConcluirTarefaUseCase _concluirTarefaUseCase;
     private readonly CriarTarefaUseCase _criarTarefaUseCase;
-    private readonly ListarTarefasUseCase _listarTarefasUseCase; // 1. Declarado aqui
+    private readonly ListarTarefasUseCase _listarTarefasUseCase;
     
-    // 2. Injetado no construtor
     public TarefaController(
         ConcluirTarefaUseCase concluirTarefaUseCase, 
         CriarTarefaUseCase criarTarefaUseCase,
@@ -32,27 +31,12 @@ public class TarefaController : ControllerBase
     }
 
     [HttpGet]
-    public IActionResult ListarTodas() // 3. Removido o [FromServices] daqui
+    public IActionResult ListarTodas() 
     {
-        var tarefas = _listarTarefasUseCase.Executar(); // 4. Usando a variável global
+        var tarefas = _listarTarefasUseCase.Executar(); 
         return Ok(tarefas);
     }
     
-    [HttpPut("{id}/concluir")]
-    public IActionResult Concluir(int id)
-    {
-        try
-        {
-            var resultado = _concluirTarefaUseCase.Executar(id);
-            return Ok(resultado); 
-        }
-        catch (System.Exception ex)
-        {
-            return BadRequest(new { erro = ex.Message });
-        }
-    }
-    // Adicione as rotas abaixo das que você já tem (Criar, ListarTodas, Concluir)
-
     [HttpGet("{id}")]
     public IActionResult ObterPorId(int id, [FromServices] ObterTarefaPorIdUseCase useCase)
     {
@@ -68,7 +52,7 @@ public class TarefaController : ControllerBase
         try
         {
             useCase.Executar(id, request.Titulo, request.Descricao);
-            return NoContent(); // 204 No Content é o padrão para atualizações bem-sucedidas
+            return NoContent(); 
         }
         catch (Exception ex)
         {
@@ -76,17 +60,52 @@ public class TarefaController : ControllerBase
         }
     }
 
-    [HttpDelete("{id}")]
-    public IActionResult Excluir(int id, [FromServices] ExcluirTarefaUseCase useCase)
+    [HttpPut("{id}/concluir")]
+    public IActionResult Concluir(int id)
     {
         try
         {
-            useCase.Executar(id);
-            return NoContent(); // 204 No Content para deleções bem-sucedidas
+            var resultado = _concluirTarefaUseCase.Executar(id);
+            return Ok(resultado); 
         }
         catch (Exception ex)
         {
-            return NotFound(new { erro = ex.Message });
+            return BadRequest(new { erro = ex.Message });
+        }
+    }
+
+    // Contrato para receber o JSON do React
+    public class AtribuirUsuarioRequest
+    {
+        public int UsuarioId { get; set; }
+    }
+
+    [HttpPut("{id}/atribuir")]
+    public IActionResult Atribuir(int id, [FromBody] AtribuirUsuarioRequest request, [FromServices] AtribuirUsuarioUseCase _useCase)
+    {
+        try
+        {
+            _useCase.Executar(id, request.UsuarioId);
+            return Ok(new { mensagem = "Usuário atribuído à tarefa com sucesso!" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { erro = ex.Message });
+        }
+    }
+
+    // Apenas UM método de Deletar para evitar conflito de rotas
+    [HttpDelete("{id}")]
+    public IActionResult Deletar(int id, [FromServices] DeletarTarefaUseCase _useCase)
+    {
+        try
+        {
+            _useCase.Executar(id);
+            return Ok(new { mensagem = "Tarefa excluída com sucesso!" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { erro = ex.Message });
         }
     }
 }
