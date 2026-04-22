@@ -62,6 +62,13 @@ namespace SistemaDeGestaoDeTarefas.Domain.Entities
             Titulo = novoTitulo;
             Descricao = novaDescricao;
         }
-
+        public void Desatribuir()
+        {
+            // Remove o dono
+            this.UsuarioAtribuidoId = null;
+        
+            // Joga a tarefa de volta para a primeira coluna
+            this.Status = StatusTarefa.Pendente; 
+        }
     }
 }

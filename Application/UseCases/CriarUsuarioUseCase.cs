@@ -1,29 +1,28 @@
 using SistemaDeGestaoDeTarefas.Domain.Entities;
-using SistemaDeGestaoDeTarefas.Infrastructure;
 
 namespace SistemaDeGestaoDeTarefas.Application.UseCases;
 
 public class CriarUsuarioUseCase
 {
-    private readonly AppDbContext _context;
+    private readonly IUsuarioRepository _repository;
 
-    public CriarUsuarioUseCase(AppDbContext context)
+    public CriarUsuarioUseCase(IUsuarioRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
-    public Usuario Executar(string nome, string email, Usuario.TipoDepartamento departamento)
+    // Adicionamos a 'senha' como parâmetro aqui
+    public void Executar(string nome, string email, string senha, Usuario.TipoDepartamento departamento)
     {
-        // 1. Aqui ficariam as validações de regra de negócio 
-        // (ex: if (email ja existe no banco) throw Exception...)
+        if (_repository.ExisteEmail(email))
+            throw new Exception("Este e-mail já está cadastrado.");
 
-        // 2. Criação da Entidade
-        var novoUsuario = new Usuario(nome, email, departamento);
-        
-        // 3. Persistência
-        _context.Usuarios.Add(novoUsuario);
-        _context.SaveChanges();
+        // 1. Gerar o Hash da senha antes de criar o objeto
+        string senhaHash = BCrypt.Net.BCrypt.HashPassword(senha);
 
-        return novoUsuario;
+        // 2. Agora passamos os 4 argumentos exigidos pelo construtor
+        var novoUsuario = new Usuario(nome, email, senhaHash, departamento);
+
+        _repository.Adicionar(novoUsuario);
     }
 }

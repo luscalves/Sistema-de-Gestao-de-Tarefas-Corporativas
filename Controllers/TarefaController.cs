@@ -108,4 +108,22 @@ public class TarefaController : ControllerBase
             return BadRequest(new { erro = ex.Message });
         }
     }
+    public class BloquearTarefaRequest
+    {
+        public string Motivo { get; set; }
+    }
+
+    [HttpPut("{id}/bloquear")]
+    public IActionResult Bloquear(int id, [FromBody] BloquearTarefaRequest request, [FromServices] BloquearTarefaUseCase _useCase)
+    {
+        try
+        {
+            _useCase.Executar(id, request.Motivo);
+            return Ok(new { mensagem = "Tarefa bloqueada com sucesso!" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { erro = ex.Message });
+        }
+    }
 }

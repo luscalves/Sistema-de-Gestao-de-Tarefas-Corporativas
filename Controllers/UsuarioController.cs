@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using SistemaDeGestaoDeTarefas.Domain.Entities;
-using SistemaDeGestaoDeTarefas.Application.UseCases; // Assumindo que os UseCases ficarão aqui
+using SistemaDeGestaoDeTarefas.Application.UseCases;
 
 namespace SistemaDeGestaoDeTarefas.Controllers;
 
@@ -8,38 +7,42 @@ namespace SistemaDeGestaoDeTarefas.Controllers;
 [Route("api/[controller]")]
 public class UsuarioController : ControllerBase
 {
-    // O DTO (Objeto de Transferência) que recebe os dados do React
+    [HttpPut("{id}/desativar")]
+    public IActionResult Desativar(int id, [FromServices] DesativarUsuarioUseCase useCase)
+    {
+        try
+        {
+            useCase.Executar(id);
+            return Ok(new { mensagem = "Usuário desativado e tarefas devolvidas para o painel com sucesso!" });
+        }
+        catch (System.Exception ex)
+        {
+            return BadRequest(new { erro = ex.Message });
+        }
+    }
     public class CriarUsuarioRequest
     {
         public string Nome { get; set; }
         public string Email { get; set; }
-        public Usuario.TipoDepartamento Departamento { get; set; }
+        public string Senha { get; set; }
+        public int Departamento { get; set; } // Vem como 0, 1 ou 2 do Front-end
     }
 
-    [HttpGet]
-    public IActionResult ListarTodos([FromServices] ListarUsuariosUseCase _useCase)
-    {
-        try
-        {
-            // O Controller não faz ideia de como a lista é gerada, ele só pede a lista.
-            var usuarios = _useCase.Executar();
-            return Ok(usuarios);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { erro = "Não foi possível listar os usuários.", detalhe = ex.Message });
-        }
-    }
-
+    // 2. A Rota POST
     [HttpPost]
-    public IActionResult CriarUsuario([FromBody] CriarUsuarioRequest request, [FromServices] CriarUsuarioUseCase _useCase)
+    public IActionResult Criar([FromBody] CriarUsuarioRequest request, [FromServices] CriarUsuarioUseCase useCase)
     {
         try
         {
-            // O Controller manda os dados para a regra de negócio
-            var novoUsuario = _useCase.Executar(request.Nome, request.Email, request.Departamento);
+            // O Controller converte o número inteiro de volta para o Enum antes de mandar pro UseCase
+            useCase.Executar(
+                request.Nome, 
+                request.Email, 
+                request.Senha, 
+                (Domain.Entities.Usuario.TipoDepartamento)request.Departamento
+            );
             
-            return Created($"/api/usuario/{novoUsuario.Id}", novoUsuario);
+            return Created("", new { mensagem = "Usuário criado com sucesso!" });
         }
         catch (Exception ex)
         {

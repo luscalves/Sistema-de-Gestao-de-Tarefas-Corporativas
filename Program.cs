@@ -15,7 +15,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("PermitirFrontEnd", policy =>
     {
-        policy.WithOrigins("http://localhost:5174") // O endereço do seu Vite/React
+        policy.WithOrigins("http://localhost:5173") // O endereço do seu Vite/React
             .AllowAnyHeader()                     // Permite enviar qualquer dado (como JSON)
             .AllowAnyMethod();                    // Permite POST, GET, PUT, DELETE
     });
@@ -37,11 +37,11 @@ builder.Services.AddScoped<AtualizarTarefaUseCase>();
 builder.Services.AddScoped<ExcluirTarefaUseCase>();
 builder.Services.AddScoped<ObterTarefaPorIdUseCase>();
 builder.Services.AddScoped<DeletarTarefaUseCase>();
-
-// UseCases de Usuário / Atribuição
 builder.Services.AddScoped<AtribuirUsuarioUseCase>();
 builder.Services.AddScoped<ListarUsuariosUseCase>();
 builder.Services.AddScoped<CriarUsuarioUseCase>();
+builder.Services.AddScoped<BloquearTarefaUseCase>();
+builder.Services.AddScoped<DesativarUsuarioUseCase>();
 
 var app = builder.Build();
 
