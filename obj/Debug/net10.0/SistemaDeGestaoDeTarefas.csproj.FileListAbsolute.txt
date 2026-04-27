@@ -117,3 +117,8 @@
 /home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/obj/Debug/net10.0/SistemaDeGestaoDeTarefas.genruntimeconfig.cache
 /home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/obj/Debug/net10.0/ref/SistemaDeGestaoDeTarefas.dll
 /home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/bin/Debug/net10.0/BCrypt.Net-Next.dll
+/home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/bin/Debug/net10.0/Microsoft.IdentityModel.Abstractions.dll
+/home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/bin/Debug/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/bin/Debug/net10.0/Microsoft.IdentityModel.Logging.dll
+/home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/bin/Debug/net10.0/Microsoft.IdentityModel.Tokens.dll
+/home/lucalves/RiderProjects/SistemaDeGestãoDeTarefas/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll

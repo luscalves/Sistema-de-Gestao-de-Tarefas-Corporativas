@@ -42,6 +42,7 @@ builder.Services.AddScoped<ListarUsuariosUseCase>();
 builder.Services.AddScoped<CriarUsuarioUseCase>();
 builder.Services.AddScoped<BloquearTarefaUseCase>();
 builder.Services.AddScoped<DesativarUsuarioUseCase>();
+builder.Services.AddScoped<FazerLoginUseCase>();
 
 var app = builder.Build();
 
