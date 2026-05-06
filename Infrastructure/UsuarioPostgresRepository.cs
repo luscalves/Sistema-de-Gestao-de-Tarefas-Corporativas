@@ -17,6 +17,11 @@ public class UsuarioPostgresRepository : IUsuarioRepository
         // O Entity Framework vai no banco fazer um "SELECT * FROM Usuarios WHERE Id = {id}"
         return _context.Usuarios.Find(id); 
     }
+
+    public IEnumerable<Usuario> ListarTodos()
+    {
+        return _context.Usuarios.ToList();
+    }
     // Adicione estes métodos dentro da sua classe UsuarioPostgresRepository
     public bool ExisteEmail(string email)
     {

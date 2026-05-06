@@ -1,28 +1,32 @@
-using SistemaDeGestaoDeTarefas.Infrastructure;
+using SistemaDeGestaoDeTarefas.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SistemaDeGestaoDeTarefas.Application.UseCases;
 
 public class ListarUsuariosUseCase
 {
-    private readonly AppDbContext _context;
+    private readonly IUsuarioRepository _repository;
 
-    public ListarUsuariosUseCase(AppDbContext context)
+    public ListarUsuariosUseCase(IUsuarioRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
-    // Usamos 'object' aqui para simplificar, mas num cenário 100% purista, 
-    // retornaríamos uma List<UsuarioResponseDTO>
-    public object Executar()
+    public IEnumerable<object> Executar()
     {
-        return _context.Usuarios
+        // Pega todos os usuários do banco
+        var todosUsuarios = _repository.ListarTodos();
+
+        // Filtra apenas os ATIVOS e cria um objeto limpo (sem a senha) para o React
+        return todosUsuarios
+            .Where(u => u.Ativo)
             .Select(u => new 
             {
-                u.Id,
-                u.Nome,
-                u.Email,
-                u.Departamento
-            })
-            .ToList();
+                id = u.Id,
+                nome = u.Nome,
+                email = u.Email,
+                departamento = u.Departamento.ToString() // Envia o nome do departamento em vez do número
+            });
     }
 }

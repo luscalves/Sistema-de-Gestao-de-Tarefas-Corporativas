@@ -49,4 +49,18 @@ public class UsuarioController : ControllerBase
             return BadRequest(new { erro = ex.Message });
         }
     }
+    
+    [HttpGet]
+    public IActionResult ListarTodos([FromServices] ListarUsuariosUseCase useCase)
+    {
+        try
+        {
+            var usuarios = useCase.Executar();
+            return Ok(usuarios);
+        }
+        catch (System.Exception ex)
+        {
+            return BadRequest(new { erro = ex.Message });
+        }
+    }
 }

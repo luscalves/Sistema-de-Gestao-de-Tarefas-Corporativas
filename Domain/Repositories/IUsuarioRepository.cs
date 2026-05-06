@@ -16,4 +16,6 @@ public interface IUsuarioRepository
     bool ExisteEmail(string email);
     Usuario ObterPorEmail(string email);
     void Adicionar(Usuario usuario);
+    
+    IEnumerable<Usuario> ListarTodos();
 }
