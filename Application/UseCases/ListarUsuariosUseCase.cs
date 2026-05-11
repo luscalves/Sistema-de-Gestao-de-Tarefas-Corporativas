@@ -15,10 +15,8 @@ public class ListarUsuariosUseCase
 
     public IEnumerable<object> Executar()
     {
-        // Pega todos os usuários do banco
         var todosUsuarios = _repository.ListarTodos();
 
-        // Filtra apenas os ATIVOS e cria um objeto limpo (sem a senha) para o React
         return todosUsuarios
             .Where(u => u.Ativo)
             .Select(u => new 
@@ -26,7 +24,7 @@ public class ListarUsuariosUseCase
                 id = u.Id,
                 nome = u.Nome,
                 email = u.Email,
-                departamento = u.Departamento.ToString() // Envia o nome do departamento em vez do número
+                departamento = u.Departamento.ToString()
             });
     }
 }
