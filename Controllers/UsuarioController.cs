@@ -25,16 +25,14 @@ public class UsuarioController : ControllerBase
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
-        public int Departamento { get; set; } // Vem como 0, 1 ou 2 do Front-end
+        public int Departamento { get; set; } 
     }
 
-    // 2. A Rota POST
     [HttpPost]
     public IActionResult Criar([FromBody] CriarUsuarioRequest request, [FromServices] CriarUsuarioUseCase useCase)
     {
         try
         {
-            // O Controller converte o número inteiro de volta para o Enum antes de mandar pro UseCase
             useCase.Executar(
                 request.Nome, 
                 request.Email, 
