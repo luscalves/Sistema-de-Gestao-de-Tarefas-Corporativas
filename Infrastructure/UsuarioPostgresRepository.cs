@@ -14,7 +14,6 @@ public class UsuarioPostgresRepository : IUsuarioRepository
 
     public Usuario? ObterPorId(int id)
     {
-        // O Entity Framework vai no banco fazer um "SELECT * FROM Usuarios WHERE Id = {id}"
         return _context.Usuarios.Find(id); 
     }
 
@@ -22,7 +21,6 @@ public class UsuarioPostgresRepository : IUsuarioRepository
     {
         return _context.Usuarios.ToList();
     }
-    // Adicione estes métodos dentro da sua classe UsuarioPostgresRepository
     public bool ExisteEmail(string email)
     {
         return _context.Usuarios.Any(u => u.Email == email);
