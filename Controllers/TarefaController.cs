@@ -74,7 +74,6 @@ public class TarefaController : ControllerBase
         }
     }
 
-    // Contrato para receber o JSON do React
     public class AtribuirUsuarioRequest
     {
         public int UsuarioId { get; set; }
@@ -93,8 +92,6 @@ public class TarefaController : ControllerBase
             return BadRequest(new { erro = ex.Message });
         }
     }
-
-    // Apenas UM método de Deletar para evitar conflito de rotas
     [HttpDelete("{id}")]
     public IActionResult Deletar(int id, [FromServices] DeletarTarefaUseCase _useCase)
     {
