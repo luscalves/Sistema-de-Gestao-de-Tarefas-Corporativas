@@ -6,7 +6,6 @@ public class Usuario
     public string Nome { get; private set; }
     public string Email { get; private set; }
     
-    // NOVO CAMPO: Guardará o Hash, nunca a senha pura!
     public string SenhaHash { get; private set; } 
     
     public TipoDepartamento Departamento { get; private set; }
@@ -18,8 +17,7 @@ public class Usuario
         Desenvolvimento,
         Financeiro
     }
-    
-    // Atualize o construtor para receber a senha já criptografada
+
     public Usuario(string nome, string email, string senhaHash, TipoDepartamento departamento)
     {
         Validar(nome, email);
