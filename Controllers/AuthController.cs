@@ -19,11 +19,11 @@ public class AuthController : ControllerBase
         try
         {
             var resultado = useCase.Executar(request.Email, request.Senha);
-            return Ok(resultado); // Devolve status 200 com o Token e dados do usuário
+            return Ok(resultado); 
         }
         catch (Exception ex)
         {
-            return Unauthorized(new { erro = ex.Message }); // Status 401: Não autorizado
+            return Unauthorized(new { erro = ex.Message }); 
         }
     }
 }
