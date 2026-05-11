@@ -18,7 +18,7 @@ public class ListarTarefasUseCase
             Id = t.Id,
             Titulo = t.Titulo,
             Descricao = t.Descricao,
-            Status = t.Status.ToString(), // Converte o Enum para String
+            Status = t.Status.ToString(),
             DataCriacao = t.DataCriacao,
             UsuarioAtribuidoId = t.UsuarioAtribuidoId,
             MotivoBloqueio = t.MotivoBloqueio
